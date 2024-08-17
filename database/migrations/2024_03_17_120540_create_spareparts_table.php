@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('spareparts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('reference');
+            $table->integer('stock');
+            $table->float('price');
+            $table->string('picture');
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->timestamps();
         });
     }

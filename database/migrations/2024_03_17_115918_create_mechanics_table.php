@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('mechanics', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('cin')->unique();
+            $table->string('address');
+            $table->string('phone_number')->unique();
+            $table->date('recruitment_date');
+            $table->float('salary');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
