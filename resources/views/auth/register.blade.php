@@ -66,7 +66,8 @@
                         Phone Number
                     </label>
                     <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
-                        placeholder="Phone Number" regex="/^(?:\+212|0)([5-7]\d{8})$/"
+                        placeholder="Phone Number" 
+                        regex="/^(?:\+212|0)([5-7]\d{8})$/"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                     @error('phone_number')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

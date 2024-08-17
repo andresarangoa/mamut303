@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/clients/search', [ClientController::class, 'search']);
     Route::resource('/clients', ClientController::class);
     Route::get('/clients-export', [ClientController::class, 'export']);
