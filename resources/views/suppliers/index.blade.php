@@ -2,7 +2,11 @@
 
 @php
     $headers = ['Name', 'Email', 'Phone Number', 'Address'];
-    $columns = array_keys($suppliers->first()->toArray());
+    if ($suppliers->isNotEmpty()) {
+        $columns = array_keys($suppliers->first()->toArray());
+    } else {
+        $columns = []; // Or set default columns if necessary
+    }
 @endphp
 
 @section('content')

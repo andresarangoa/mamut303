@@ -18,7 +18,7 @@
 
 <body>
     <x-flash-message />
-    <nav class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav class="fixed top-0 z-40 w-full bg-custom-gray border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start rtl:justify-end">
@@ -36,7 +36,7 @@
                     <a href="/" class="flex ms-2 md:me-24">
                         <h3 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
                             <span class="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-sky-400">
-                                <i class="fa-solid fa-car-on"></i> Car Garage
+                                <img src="{{ asset('assets/mamut303.png') }}" class="h-10 object-contain" alt="">
                             </span>
                         </h3>
                     </a>

@@ -2,7 +2,11 @@
 
 @php
     $headers = ['Name', 'Reference', 'Stock', 'Price'];
-    $columns = array_keys($spareparts->first()->toArray());
+    if ($spareparts->isNotEmpty()) {
+        $columns = array_keys($spareparts->first()->toArray());
+    } else {
+        $columns = []; // Or set default columns if necessary
+    }
 @endphp
 
 @section('content')

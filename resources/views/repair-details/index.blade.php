@@ -2,7 +2,12 @@
 
 @php
     $headers = ['#', 'Description', 'Price'];
-    $columns = array_keys($repairs->first()->toArray());
+
+    if ($repairs->isNotEmpty()) {
+        $columns = array_keys($repairs->first()->toArray());
+    } else {
+        $columns = []; // Or set default columns if necessary
+    }
 @endphp
 
 @section('content')
