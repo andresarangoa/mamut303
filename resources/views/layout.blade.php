@@ -108,7 +108,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-user-group text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Clients</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.clients') }}</span>
                         </a>
                     </li>
                     <li>
@@ -116,7 +116,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-car text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Vehicles</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.vehicles') }}</span>
                         </a>
                     </li>
                     <li>
@@ -124,7 +124,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Mechanics</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.mechanics') }}</span>
                         </a>
                     </li>
                     <li>
@@ -132,7 +132,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-screwdriver-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Repairs</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.repairs') }}</span>
                         </a>
                     </li>
                     <li>
@@ -140,7 +140,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-receipt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Invoices</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.invoices') }}</span>
                         </a>
                     </li>
                     <li>
@@ -148,7 +148,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-calendar-check text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Meetings</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.meetings') }}</span>
                         </a>
                     </li>
                     <li>
@@ -157,19 +157,18 @@
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                             <i
                                 class="fa-solid fa-gear text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Warehouse</span>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ __('messages.warehouse') }}</span>
                             <i
                                 class="fa-solid fa-angle-down text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
                         </button>
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/spareparts"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Spare
-                                    Parts</a>
+                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('messages.spareParts') }}</a>
                             </li>
                             <li>
                                 <a href="/suppliers"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Suppliers</a>
+                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('messages.suppliers') }}</a>
                             </li>
                         </ul>
                     </li>

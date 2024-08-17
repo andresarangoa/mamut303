@@ -8,8 +8,9 @@ return [
     'mechanics' => 'Mecánicos',
     'repairs' => 'Reparaciones',
     'invoices' => 'Facturas',
-    'meetings' => 'Reuniones',
+    'meetings' => 'Calendario',
     'warehouse' => 'Almacén',
     'spareParts' => 'Piezas de repuesto',
     'suppliers' => 'Proveedores'
+    
 ];
