@@ -3,7 +3,7 @@
 // resources/lang/en/messages.php
 return [
     'welcome' => 'Welcome to our application!',
-    'dashboars' => 'Dashboard',
+    'dashboard' => 'Dashboard',
     'clients' => 'Clients',
     'vehicles' => 'Vehicles',
     'mechanics' => 'Mechanics',
