@@ -1,13 +1,19 @@
 @extends('layout')
 
 @php
-    $headers = ['Make', 'Model', 'Year', 'License Plate', 'VIN', 'Fuel Type'];
-    $columns = [];
+    $headers = [
+        __('messages.status'),
+        __('messages.brand'),
+        __('messages.model'),
+        __('messages.license_plate'),
+        __('messages.fuel_type'),
+    ];
+    
     if (!$vehicles->isEmpty()) {
         $columns = array_keys($vehicles->first()->toArray());
     }
 @endphp
 
 @section('content')
-    <x-table route="vehicles" title="Vehicles" :headers="$headers" :columns="$columns" :list="$vehicles" />
+    <x-table route="vehicles" title="{{ __('messages.vehicles') }}" :headers="$headers" :columns="$columns" :list="$vehicles" />
 @endsection
