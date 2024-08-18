@@ -18,7 +18,7 @@ class VehiclesExport implements FromCollection, WithHeadings, WithStyles
     public function __construct()
     {
         $this->vehicles = Vehicle::join('clients', 'client_id', '=', 'clients.id')
-            ->select([DB::raw('CONCAT(clients.first_name, " ", clients.last_name) AS client'), 'make', 'model', 'year', 'license_plate', 'vin', 'fuel_type'])
+            ->select([DB::raw('CONCAT(clients.first_name, " ", clients.last_name) AS client'), 'brand', 'model', 'license_plate', 'fuel_type'])
             ->get();
     }
 

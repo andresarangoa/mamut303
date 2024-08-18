@@ -17,9 +17,30 @@
         @endif
         @foreach ($columns as $col)
             @if ($col != 'id' && $col != 'picture')
-                <td class="px-6 py-4">
-                    {{ $item[$col] }}
-                </td>
+                @if ($col === 'status')
+                    @php
+                        // Define colors for different status values
+                        $colors = [
+                            'received' => 'bg-yellow-900',
+                            'valuated' => 'bg-yellow-500',
+                            'in_workshop' => 'bg-yellow-300',
+                            'total_loss' => 'bg-purple-500',
+                            'left_without_nomination' => 'bg-blue-400',
+                            'left_and_in_nomination' => 'bg-green-500',
+                        ];
+                        $status = $item[$col];
+                        $statusLabel = __('messages.status_list.' . $status);
+                        $statusColor = $colors[$item[$col]] ?? 'bg-gray-500';
+                    @endphp
+                    <td class="px-6 py-4">
+                        <span class="inline-block w-3 h-3 rounded-full {{ $statusColor }} mr-2"></span>
+                        {{ $statusLabel }}
+                    </td>
+                @else
+                    <td class="px-6 py-4">
+                        {{ $item[$col] }}
+                    </td>
+                @endif
             @endif
         @endforeach
         <td class="flex justify-center items-center px-6 py-4">

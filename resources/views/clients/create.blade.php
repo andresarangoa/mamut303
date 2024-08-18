@@ -24,7 +24,7 @@
             <div class="flex gap-5">
                 <div class="mb-5 flex-1">
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        First Name
+                        {{ __('messages.first_name') }}
                     </label>
                     <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -36,7 +36,7 @@
                 </div>
                 <div class="mb-5 flex-1">
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Last Name
+                        {{ __('messages.last_name') }}
                     </label>
                     <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -49,7 +49,7 @@
             </div>
             <div class="mb-5">
                 <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Address
+                    {{ __('messages.address') }}
                 </label>
                 <input type="text" id="address" name="address" value="{{ old('address') }}"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -61,7 +61,7 @@
             </div>
             <div class="mb-5">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Email
+                    {{ __('messages.email') }}
                 </label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -74,10 +74,10 @@
             <div class="flex gap-5">
                 <div class="mb-5 flex-1">
                     <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Phone Number
+                        {{ __('messages.phone_number') }}
                     </label>
                     <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
-                        regex="/^(?:\+212|0)([5-7]\d{8})$/"
+                        regex="/^\+?[1-9]\d{1,14}$/"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                     @error('phone_number')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -87,10 +87,10 @@
                 </div>
                 <div class="mb-5 flex-1">
                     <label for="cin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        CIN
+                        {{__('messages.DNI')}}
                     </label>
                     <input type="text" id="cin" name="cin" value="{{ old('cin') }}"
-                        regex="/^[A-Za-z]\d{6}$/"
+                        regex="/^\d{6,}$/"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                     @error('cin')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -101,7 +101,7 @@
             </div>
             <button type="submit"
                 class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-                Save
+                {{__('messages.save')}}
             </button>
         </form>
         <div class="flex-1 p-5">
