@@ -8,7 +8,7 @@
         __('messages.license_plate'),
         __('messages.fuel_type'),
     ];
-    
+    $columns = [];
     if (!$vehicles->isEmpty()) {
         $columns = array_keys($vehicles->first()->toArray());
     }

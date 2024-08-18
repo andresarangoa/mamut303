@@ -2,28 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Insurer;
 use Illuminate\Http\Request;
-namespace App\Http\Controllers;
-use App\Models\Vehicle;
 class InsurerController extends Controller
 {
     //
     public function index()
     {
-        if (auth()->user()->role == 'client') {
-            $vehicles = Vehicle::join('clients', 'client_id', '=', 'clients.id')
-                ->select(['vehicles.id', 'brand', 'model', 'license_plate', 'fuel_type'])
-                ->where('client_id', auth()->user()->client->id)
-                ->orderBy('vehicles.updated_at')
-                ->simplePaginate(5);
-        } else {
-            $vehicles = Vehicle::latest()
-                ->select(['id', 'status', 'brand', 'model', 'license_plate', 'fuel_type'])
-                ->simplePaginate(5);
-        }
+        $insurer = Insurer::latest('updated_at')
+            ->select(['name', 'nit'])
+            ->simplePaginate(5);
 
-        return view('insurer.index', [
-            'vehicles' => $vehicles
+        return view('insurers.index', [
+            'insurers' => $insurer
+        ]);
+    }
+
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'nit' => 'required',
+        ]);
+
+        $insurer = new Insurer($data);
+        $insurer->save();
+
+        return redirect('/insurers')->with('success', 'insurer created successfully!');
+    }
+    public function create()
+    {
+        return view('insurers.create', [
+            'insurers' => Insurer::all()
         ]);
     }
 }

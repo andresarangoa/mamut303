@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('insurer', function (Blueprint $table) {
+        Schema::create('insurers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('nit');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('insurer');
+        Schema::dropIfExists('insurers');
     }
 };
