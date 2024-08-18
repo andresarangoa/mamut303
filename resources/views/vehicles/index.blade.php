@@ -6,9 +6,10 @@
         __('messages.brand'),
         __('messages.model'),
         __('messages.license_plate'),
+        __('messages.insurer'),
         __('messages.fuel_type'),
     ];
-    
+    $columns = [];
     if (!$vehicles->isEmpty()) {
         $columns = array_keys($vehicles->first()->toArray());
     }

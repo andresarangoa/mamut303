@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MechanicController;
 use App\Http\Controllers\MeetingController;
@@ -49,6 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/suppliers', SupplierController::class);
     Route::get('/suppliers-export', [SupplierController::class, 'export']);
     Route::post('/suppliers-import', [SupplierController::class, 'import']);
+
+    Route::resource('/insurers', InsurerController::class);
+    // Route::get('/suppliers-export', [SupplierController::class, 'export']);
+    // Route::post('/suppliers-import', [SupplierController::class, 'import']);
 
     Route::get('/', function () {
         if (auth()->user()->role == 'admin') {

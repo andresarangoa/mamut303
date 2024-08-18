@@ -9,6 +9,7 @@ use App\Models\Mechanic;
 use App\Models\Repair;
 use App\Models\RepairDetails;
 use App\Models\Vehicle;
+use App\Models\Insurer;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,15 +20,33 @@ class VehicleController extends Controller
     public function index()
     {
         if (auth()->user()->role == 'client') {
-            $vehicles = Vehicle::join('clients', 'client_id', '=', 'clients.id')
-                ->select(['vehicles.id', 'brand', 'model', 'license_plate', 'fuel_type'])
+            $vehicles = Vehicle::join('clients', 'vehicles.client_id', '=', 'clients.id')
+                ->join('insurers', 'vehicles.insurer_id', '=', 'insurers.id') // Join with the insurers table
+                ->select([
+                    'vehicles.id', 
+                    'brand', 
+                    'model', 
+                    'license_plate', 
+                    'insurers.name as insurer_name', 
+                    'fuel_type', 
+                  
+                ])
                 ->where('client_id', auth()->user()->client->id)
                 ->orderBy('vehicles.updated_at')
                 ->simplePaginate(5);
         } else {
-            $vehicles = Vehicle::latest()
-                ->select(['id', 'status', 'brand', 'model', 'license_plate', 'fuel_type'])
-                ->simplePaginate(5);
+            $vehicles = Vehicle::latest('vehicles.updated_at') // Specify the table for created_at
+            ->join('insurers', 'vehicles.insurer_id', '=', 'insurers.id')
+            ->select([
+                'vehicles.id', 
+                'status', 
+                'brand', 
+                'model', 
+                'license_plate', 
+                'insurers.name as insurer_name',
+                'fuel_type', 
+            ])
+            ->simplePaginate(5);
         }
 
         return view('vehicles.index', [
@@ -46,9 +65,14 @@ class VehicleController extends Controller
     {
         $repairs = Repair::join('repairs_details', 'repairs.repair_details_id', '=', 'repairs_details.id')
             ->where('repairs.vehicle_id', $vehicle->id)
-            ->select('repairs.id', 'description', 'price', 'status')
+            ->select([
+                'repairs.id', 
+                'description', 
+                'price', 
+                'status', 
+            ])
             ->get();
-
+    
         return view('vehicles.show', [
             'vehicle' => $vehicle,
             'repairs' => $repairs,
@@ -61,7 +85,8 @@ class VehicleController extends Controller
     public function create()
     {
         return view('vehicles.create', [
-            'clients' => Client::all()
+            'clients' => Client::all(),
+            'insurers' => Insurer::all()
         ]);
     }
 
@@ -75,6 +100,7 @@ class VehicleController extends Controller
             'license_plate' => ['required', Rule::unique('vehicles', 'license_plate')],
             'fuel_type' => 'required',
             'client_id' => 'required',
+            'insurer_id' => 'required',
             // Assuming 'picture' can be nullable or optional, adjust as needed
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules for picture if needed
         ]);
