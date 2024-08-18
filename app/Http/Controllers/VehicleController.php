@@ -20,19 +20,25 @@ class VehicleController extends Controller
     {
         if (auth()->user()->role == 'client') {
             $vehicles = Vehicle::join('clients', 'client_id', '=', 'clients.id')
-                ->select(['vehicles.id', 'make', 'model', 'year', 'license_plate', 'vin', 'fuel_type'])
+                ->select(['vehicles.id', 'brand', 'model', 'license_plate', 'fuel_type'])
                 ->where('client_id', auth()->user()->client->id)
                 ->orderBy('vehicles.updated_at')
                 ->simplePaginate(5);
         } else {
             $vehicles = Vehicle::latest()
-                ->select(['id', 'make', 'model', 'year', 'license_plate', 'vin', 'fuel_type'])
+                ->select(['id', 'status', 'brand', 'model', 'license_plate', 'fuel_type'])
                 ->simplePaginate(5);
         }
 
         return view('vehicles.index', [
             'vehicles' => $vehicles
         ]);
+    }
+
+    // Method to get the status label
+    public function getStatusLabelAttribute()
+    {
+        return __('messages.status_list.' . $this->status, 'Unknown Status');
     }
 
     // Show single vehicle
@@ -62,21 +68,30 @@ class VehicleController extends Controller
     // Store new vehicle
     public function store(Request $request)
     {
+        // Validate the request data
         $data = $request->validate([
-            'client_id' => 'required',
-            'make' => 'required',
+            'brand' => 'required',
             'model' => 'required',
-            'year' => 'required|numeric',
-            'fuel_type' => 'required',
-            'vin' => ['regex:/^[A-HJ-NPR-Z0-9]{17}$/', Rule::unique('vehicles', 'vin')],
             'license_plate' => ['required', Rule::unique('vehicles', 'license_plate')],
+            'fuel_type' => 'required',
+            'client_id' => 'required',
+            // Assuming 'picture' can be nullable or optional, adjust as needed
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules for picture if needed
         ]);
 
+        // Add a default value for status
         $data['status'] = 'Pending';
 
+        // Create a new Vehicle instance with the validated data
         $vehicle = new Vehicle($data);
+
+        // Save the vehicle to the database
         $vehicle->save();
 
+        // Stop execution and dump data for debugging (remove in production)
+        dd($data);
+
+        // Redirect to the vehicles index page with a success message
         return redirect('/vehicles')->with('success', 'Vehicle created successfully!');
     }
 
@@ -93,7 +108,7 @@ class VehicleController extends Controller
     public function update(Request $request, Vehicle $vehicle)
     {
         if ($request->hasFile('picture')) {
-            $vehicle->picture =  $request->file('picture')->store('pictures', 'public');
+            $vehicle->picture = $request->file('picture')->store('pictures', 'public');
 
             $vehicle->save();
 
@@ -102,11 +117,10 @@ class VehicleController extends Controller
 
         $data = $request->validate([
             'client_id' => 'required',
-            'make' => 'required',
+            'status' => 'required',
+            'brand' => 'required',
             'model' => 'required',
-            'year' => 'required|numeric',
             'fuel_type' => 'required',
-            'vin' => ['required', 'regex:/^[A-HJ-NPR-Z0-9]{17}$/'],
         ]);
 
         $vehicle->update($data);
@@ -125,13 +139,11 @@ class VehicleController extends Controller
     {
         $query = $request->input('q');
 
-        $vehicles = Vehicle::where('make', 'LIKE', "%$query%")
+        $vehicles = Vehicle::where('brand', 'LIKE', "%$query%")
             ->orWhere('model', 'LIKE', "%$query%")
-            ->orWhere('year', 'LIKE', "%$query%")
             ->orWhere('license_plate', 'LIKE', "%$query%")
-            ->orWhere('vin', 'LIKE', "%$query%")
             ->orWhere('fuel_type', 'LIKE', "%$query%")
-            ->select(['id', 'make', 'model', 'year', 'license_plate', 'vin', 'fuel_type'])
+            ->select(['id', 'status', 'brand', 'model', 'license_plate', 'fuel_type'])
             ->simplePaginate(5);
 
         $html = view('partials._table_body', [

@@ -52,7 +52,20 @@
                                             @if ($col != 'status')
                                                 {{ $vehicle[$col] }}
                                             @else
-                                                <x-status :status="$vehicle[$col]" />
+                                                @php
+                                                    $colors = [
+                                                        'received' => 'bg-yellow-900',
+                                                        'valuated' => 'bg-yellow-500',
+                                                        'in_workshop' => 'bg-yellow-300',
+                                                        'total_loss' => 'bg-purple-500',
+                                                        'left_without_nomination' => 'bg-blue-400',
+                                                        'left_and_in_nomination' => 'bg-green-500',
+                                                    ];
+                                                    $status = $vehicle->status; // Assuming the status is stored in $vehicle->status
+                                                    $statusLabel = __('messages.status_list.' . $status);
+                                                    $statusColor = $colors[$status] ?? 'bg-gray-500';
+                                                @endphp
+                                                <x-status :status="$statusLabel" :color="$statusColor"/>
                                             @endif
                                         </td>
                                     @endforeach

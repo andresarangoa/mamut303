@@ -23,7 +23,7 @@
             <div
                 class="stat-card bg-gradient-to-r from-purple-500 to-purple-700 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <i class="fas fa-car text-4xl mb-4"></i>
-                <h2 class="text-lg mb-2">Vehicles</h2>
+                <h2 class="text-lg mb-2">{{ __('messages.vehicles') }}</h2>
                 <p class="font-bold text-3xl">{{ $vehicles }}</p>
             </div>
             <div
