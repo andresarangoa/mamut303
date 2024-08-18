@@ -29,6 +29,7 @@ return [
     'address' => 'Dirección',
     'email' => 'Correo electronico',
     'phone_number' => 'Número de teléfono',
+    'insurers' => 'Aseguradoras',
     'status_list' => [
         'received' => 'Recibido',
         'valuated' => 'Valorado',

@@ -30,7 +30,7 @@ return [
     'address' => 'Address',
     'email' => 'Email',
     'phone_number' => 'Phone Number',
-    'email' => 'Email',
+    'insurers' => 'Insurers',
     'status_list' => [
         'received' => 'Received',
         'valuated' => 'Valuated',
