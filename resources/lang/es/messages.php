@@ -31,6 +31,8 @@ return [
     'phone_number' => 'Número de teléfono',
     'insurers' => 'Aseguradoras',
     'insurer' => 'Aseguradora',
+    'new_insurer' => 'Nueva Aseguradora',
+    'update_insurer' => 'Actualizar Aseguradora',
     'insurer_name' => 'Nombre de la aseguradora', 
     'insurer_nit' => 'Nit de la aseguradora',
     'status_list' => [

@@ -1,4 +1,5 @@
 @foreach ($list as $item)
+
     <tr onclick="window.location='{{ $route . '/' . $item->id }}'"
         class="cursor-pointer bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         @if (in_array('picture', $columns))

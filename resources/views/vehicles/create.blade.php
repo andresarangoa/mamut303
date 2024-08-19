@@ -120,14 +120,12 @@
                 </div>
             </div>
             <div class="flex gap-5 mb-5">
-
                 <div class="flex-1">
                     <label for="license_plate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         {{ __('messages.license_plate') }}
                     </label>
                     <input type="text" id="license_plate" name="license_plate" value="{{ old('license_plate') }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-                    <option value=""></option>
                     @error('license_plate')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                             {{ $message }}
@@ -135,15 +133,15 @@
                     @enderror
                 </div>
                 <div class="flex-1">
-                    <label for="fuel_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label for="insurer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         {{ __('messages.insurer') }}
                     </label>
-                    <select id="client" name="client_id"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                    <select id="insurer" name="insurer_id"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
                         <option value=""></option>
-                        @foreach ($insurers as $client)
-                            <option value="{{ $client->id }}" @selected($client->id == old('client_id'))>
-                                {{ $client->name . ' - ' . $client->nit }}
+                        @foreach ($insurers as $insurer)
+                            <option value="{{ $insurer->id }}" @selected($insurer->id == old('insurer_id'))>
+                                {{ $insurer->name . ' - ' . $insurer->nit }}
                             </option>
                         @endforeach
                     </select>
