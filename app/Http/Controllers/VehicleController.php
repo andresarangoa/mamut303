@@ -36,14 +36,16 @@ class VehicleController extends Controller
                 ->simplePaginate(5);
         } else {
             $vehicles = Vehicle::select([
-                'id', 
-                'status', 
-                'brand', 
-                'model', 
-                'license_plate', 
-                'fuel_type', 
+                'vehicles.id', 
+                'vehicles.status', 
+                'vehicles.brand', 
+                'vehicles.model', 
+                'vehicles.license_plate', 
+                'insurers.name as insurer_name', // Select insurer's name
+                'vehicles.fuel_type', 
             ])
-            ->orderBy('updated_at', 'desc') // Ensure ordering by updated_at
+            ->join('insurers', 'vehicles.insurer_id', '=', 'insurers.id') // Join with the insurers table
+            ->orderBy('vehicles.updated_at', 'desc') // Ensure ordering by updated_at
             ->simplePaginate(5); // Paginate results
         }
 
@@ -101,12 +103,10 @@ class VehicleController extends Controller
             'fuel_type' => 'required',
             'client_id' => 'required',
             'insurer_id' => 'required',
+            'status' => 'required',
             // Assuming 'picture' can be nullable or optional, adjust as needed
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules for picture if needed
         ]);
-
-        // Add a default value for status
-        $data['status'] = 'Pending';
 
         // Create a new Vehicle instance with the validated data
         $vehicle = new Vehicle($data);
