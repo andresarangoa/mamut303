@@ -10,23 +10,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- FullCalendar CSS from CDN -->
-    <link href='https://unpkg.com/@fullcalendar/core@6.1.4/main.min.css' rel='stylesheet' />
-    <link href='https://unpkg.com/@fullcalendar/daygrid@6.1.4/main.min.css' rel='stylesheet' />
-    <link href='https://unpkg.com/@fullcalendar/timegrid@6.1.4/main.min.css' rel='stylesheet' />
-    <script src="//unpkg.com/alpinejs" defer></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>MAMUT - TALLER</title>
 </head>
@@ -283,33 +272,6 @@
             @yield('content')
         </div>
     </div>
-    <!-- Calendar Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['interaction', 'dayGrid', 'timeGrid'],
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                initialView: 'dayGridMonth',
-                editable: true,
-                events: [
-                    // Example event
-                    {
-                        title: 'Event 1',
-                        start: '2024-08-01'
-                    }
-                ]
-            });
-
-            calendar.render();
-        });
-    </script>
-
 </body>
 
 </html>
