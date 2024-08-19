@@ -15,7 +15,7 @@
 @endphp
 
 @section('content')
-    <div id="tailwindModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+    <div id="tailwindModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg max-w-sm w-full">
             <div class="flex justify-between items-center p-4 border-b border-gray-200">
                 <h3 class="text-lg font-semibold">Modal Title</h3>

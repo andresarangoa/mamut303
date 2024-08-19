@@ -24,8 +24,8 @@ window.addEventListener('load', () => {
             right: 'dayGridMonth,timeGridWeek,listWeek'
         },
         dateClick: function(info) {
-            // $('#tailwindModal').removeClass('hidden'); // Show Tailwind modal
-            $('#exampleModalCenter').modal('show');
+            $('#tailwindModal').removeClass('hidden'); // Show Tailwind modal
+            
           }
     });
 
