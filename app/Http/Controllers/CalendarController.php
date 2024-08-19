@@ -2,18 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MechanicMeetingMail;
-use App\Models\Client;
-use App\Models\Mechanic;
-use App\Models\Meeting;
-use App\Models\User;
 use App\Models\Booking;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 
-class MeetingController extends Controller
+class CalendarController extends Controller
 {
     public function index()
     {
@@ -36,7 +28,7 @@ class MeetingController extends Controller
                 'color' => $color
             ];
         }
-        return view('meetings.index', ['events' => $events]);
+        return view('calendar.index', ['events' => $events]);
     }
     public function store(Request $request)
     {
