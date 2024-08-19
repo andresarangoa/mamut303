@@ -35,19 +35,19 @@ class VehicleController extends Controller
                 ->orderBy('vehicles.updated_at')
                 ->simplePaginate(5);
         } else {
-            $vehicles = Vehicle::latest('vehicles.updated_at') // Specify the table for created_at
-            ->join('insurers', 'vehicles.insurer_id', '=', 'insurers.id')
-            ->select([
-                'vehicles.id', 
+            $vehicles = Vehicle::select([
+                'id', 
                 'status', 
                 'brand', 
                 'model', 
                 'license_plate', 
-                'insurers.name as insurer_name',
                 'fuel_type', 
             ])
-            ->simplePaginate(5);
+            ->orderBy('updated_at', 'desc') // Ensure ordering by updated_at
+            ->simplePaginate(5); // Paginate results
         }
+
+        // dd($vehicles);
 
         return view('vehicles.index', [
             'vehicles' => $vehicles
@@ -113,9 +113,6 @@ class VehicleController extends Controller
 
         // Save the vehicle to the database
         $vehicle->save();
-
-        // Stop execution and dump data for debugging (remove in production)
-        dd($data);
 
         // Redirect to the vehicles index page with a success message
         return redirect('/vehicles')->with('success', 'Vehicle created successfully!');

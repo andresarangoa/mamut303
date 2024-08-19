@@ -31,6 +31,8 @@ return [
     'email' => 'Email',
     'phone_number' => 'Phone Number',
     'insurers' => 'Insurers',
+    'new_insurer' => 'New Insurer',
+    'update_insurer' => 'Update Insurer',
     'insurer' => 'Insurer',
     'insurer_name' => 'Insurer Name', 
     'insurer_nit' => 'Insurer Nit',

@@ -10,7 +10,7 @@ class InsurerController extends Controller
     public function index()
     {
         $insurer = Insurer::latest('updated_at')
-            ->select(['name', 'nit'])
+            ->select(['id','name', 'nit'])
             ->simplePaginate(5);
 
         return view('insurers.index', [
@@ -37,4 +37,30 @@ class InsurerController extends Controller
             'insurers' => Insurer::all()
         ]);
     }
+    public function edit(Insurer $insurer)
+    {
+        return view('insurers.edit', [
+            'insurer' => $insurer,
+        ]);
+    }
+
+    public function show(Insurer $insurer)
+    {
+        return view('insurers.edit', [
+            'insurer' => $insurer,
+        ]);
+    }
+
+    public function update(Request $request, Insurer $insurer)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'nit' => 'required',
+        ]);
+
+        $insurer->update($data);
+
+        return redirect('/insurers')->with('success', 'Insurer updated successfully!');
+    }
+
 }
