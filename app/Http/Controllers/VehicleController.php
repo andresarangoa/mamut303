@@ -123,7 +123,8 @@ class VehicleController extends Controller
     {
         return view('vehicles.edit', [
             'vehicle' => $vehicle,
-            'clients' => Client::all()
+            'clients' => Client::all(),
+            'insurers' => Insurer::all()
         ]);
     }
 
@@ -143,6 +144,7 @@ class VehicleController extends Controller
             'status' => 'required',
             'brand' => 'required',
             'model' => 'required',
+            'insurer_id' => 'required',
             'fuel_type' => 'required',
         ]);
 
