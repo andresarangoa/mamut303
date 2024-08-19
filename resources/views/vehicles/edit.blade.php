@@ -8,7 +8,7 @@
             @method('PUT')
             <div class={{ auth()->user()->role == 'client' ? ' hidden' : 'mb-5' }}>
                 <label for="client" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Client
+                    {{ __('messages.client') }}
                 </label>
                 <select id="client" name="client_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
