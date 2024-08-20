@@ -1,8 +1,5 @@
 @extends('auth')
 
-@php
-    extract($data);
-@endphp
 
 @section('content')
     <div class="flex justify-center items-center h-screen">
@@ -32,10 +29,10 @@
                             </p>
                         @enderror
                     </div>
-                    <input class="hidden" type="text" name="vehicle_id" value={{ $vehicle_id }} />
-                    <input class="hidden" type="text" name="client_id" value={{ $client_id }} />
-                    <input class="hidden" type="text" name="date" value={{ $date }} />
-                    <input class="hidden" type="time" name="time" value={{ $time }} />
+                    {{-- <input class="hidden" type="text" name="vehicle_id" value={{ $vehicle_id }} />
+                    <input class="hidden" type="text" name="client_id" value={{ $client_id }} /> --}}
+                    {{-- <input class="hidden" type="text" name="date" value={{ $date }} />
+                    <input class="hidden" type="time" name="time" value={{ $time }} /> --}}
                     <button type="submit"
                         class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
                         Save

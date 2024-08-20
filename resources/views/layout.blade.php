@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <!-- FullCalendar CSS from CDN -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>MAMUT - TALLER</title>
 </head>
@@ -36,7 +40,8 @@
                     <a href="/" class="flex ms-2 md:me-24">
                         <h3 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
                             <span class="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-sky-400">
-                                <img src="{{ asset('assets/mamut303.png') }}" class="h-10 object-contain" alt="">
+                                <img src="{{ asset('assets/mamut303.png') }}" class="h-10 object-contain"
+                                    alt="">
                             </span>
                         </h3>
                     </a>
@@ -97,10 +102,10 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-chart-pie text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                           
-                                <span class="ms-3">{{ __('messages.dashboard') }}</span>
-                         
-                            
+
+                            <span class="ms-3">{{ __('messages.dashboard') }}</span>
+
+
                         </a>
                     </li>
                     <li>
@@ -120,34 +125,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/mechanics"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i
-                                class="fa-solid fa-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.mechanics') }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/repair-details"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i
-                                class="fa-solid fa-screwdriver-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.repairs') }}</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/insurers"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="fa-solid fa-shield-alt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.insurers') }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/invoices"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
-                                class="fa-solid fa-receipt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.invoices') }}</span>
+                                class="fa-solid fa-shield-alt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.insurers') }}</span>
                         </a>
                     </li>
                     <li>
@@ -159,12 +141,38 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/repair-details"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i
+                                class="fa-solid fa-screwdriver-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.repairs') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/invoices"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i
+                                class="fa-solid fa-receipt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.invoices') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/mechanics"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i
+                                class="fa-solid fa-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.mechanics') }}</span>
+                        </a>
+                    </li>
+                   
+                    <li>
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                             <i
                                 class="fa-solid fa-gear text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ __('messages.warehouse') }}</span>
+                            <span
+                                class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ __('messages.warehouse') }}</span>
                             <i
                                 class="fa-solid fa-angle-down text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
                         </button>

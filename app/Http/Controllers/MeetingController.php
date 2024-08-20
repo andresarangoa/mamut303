@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Mechanic;
 use App\Models\Meeting;
 use App\Models\User;
+use App\Models\Booking;
 use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,57 +16,103 @@ use Illuminate\Support\Facades\Mail;
 
 class MeetingController extends Controller
 {
-    // show all meetings
     public function index()
     {
-        if (auth()->user()->role == 'client') {
-            $meetings = Meeting::where('client_id', auth()->user()->client->id)
-                ->join('mechanics', 'mechanic_id', '=', 'mechanics.id')
-                ->select('meetings.id', DB::raw('CONCAT(mechanics.first_name, " ", mechanics.last_name) AS mechanic'), 'date', 'time', 'status')
-                ->simplePaginate(5);
-        } elseif (auth()->user()->role == 'mechanic') {
-            $meetings = Meeting::where('mechanic_id', auth()->user()->mechanic->id)
-                ->join('clients', 'client_id', '=', 'clients.id')
-                ->select('meetings.id', DB::raw('CONCAT(clients.first_name, " ", clients.last_name) AS client'), 'date', 'time', 'status')
-                ->simplePaginate(5);
-        } else {
-            $meetings = Meeting::latest('meetings.updated_at')
-                ->join('mechanics', 'mechanic_id', '=', 'mechanics.id')
-                ->join('clients', 'client_id', '=', 'clients.id')
-                ->select('meetings.id', DB::raw('CONCAT(mechanics.first_name, " ", mechanics.last_name) AS mechanic'), DB::raw('CONCAT(clients.first_name, " ", clients.last_name) AS client'), 'date', 'time', 'status')
-                ->simplePaginate(5);
-        }
+        $events = array();
+        $bookings = Booking::all();
+        foreach ($bookings as $booking) {
+            $color = null;
+            if ($booking->title == 'Test') {
+                $color = '#924ACE';
+            }
+            if ($booking->title == 'Test 1') {
+                $color = '#68B01A';
+            }
 
+            $events[] = [
+                'id' => $booking->id,
+                'title' => $booking->title,
+                'start' => $booking->start_date,
+                'end' => $booking->end_date,
+                'color' => $color
+            ];
+        }
         return view('meetings.index', [
-            'meetings' => $meetings
+            'events' => $events,
+            'vehicles' => Vehicle::all()
         ]);
     }
-
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'date' => 'required',
-            'time' => 'required',
-            'vehicle_id' => 'required',
-            'client_id' => 'required',
-            'mechanic_id' => 'required',
+        $request->validate([
+            'start_date' => 'required',
+            'vehicle_id' => 'required', // Make sure vehicle_id is also validated
+            'status' => 'required', // Ensure status is included in the validation
+        ]);
+        // dd($request);
+        $vehicle = Vehicle::where('id', $request->vehicle_id)
+            ->select('id', 'license_plate')
+            ->firstOrFail();
+
+        $title = $request->status . ' - ' . $vehicle->license_plate;
+        $startDate = $request->start_date; // Assuming format 'Y-m-d'
+        $startTime = $request->start_time; // Assuming format 'H:i'
+
+        $startDateTime = $startDate . ' ' . $startTime;
+
+        $startDateTimeObj = new \DateTime($startDateTime);
+         // Clone to preserve the original start DateTime
+        // Add one hour to the start date and time for the end date
+        $endDateTimeObj = clone $startDateTimeObj; // Clone to preserve the original start DateTime
+        $endDateTimeObj->modify('+1 hour'); // Add one h
+        
+        $endDateTime = $endDateTimeObj->format('Y-m-d H:i:s');
+
+        $booking = Booking::create([
+            'title' => $title,
+            'vehicle_id' => $request->vehicle_id,
+            'start_date' => $startDateTime,
+            'end_date' => $endDateTime,
+            'status' => $request->status,
         ]);
 
-        $data['date'] = Carbon::createFromFormat('m/d/Y', $data['date'])->format('Y-m-d');
-        $data['status'] = 'Planned';
+        $color = null;
 
-        $meeting = new Meeting($data);
-        $meeting->save();
+        if ($booking->title == 'Test') {
+            $color = '#924ACE';
+        }
 
-        $mechanic = Mechanic::find($data['mechanic_id']);
-        $user = User::find($mechanic->user_id);
-
-        Mail::to($user->email)->send(new MechanicMeetingMail([
-            'date' => $data['date'],
-            'time' => $data['time'],
-            'vehicle' => Vehicle::find($data['vehicle_id']),
-            'client' => Client::find($data['client_id']),
-            'mechanic' => $mechanic
-        ]));
+        return redirect('/meetings')->with('success', __('messages.booking_created_successfully'));
+    }
+    public function update(Request $request, $id)
+    {
+        $booking = Booking::find($id);
+        if (!$booking) {
+            return response()->json([
+                'error' => 'Unable to locate the event'
+            ], 404);
+        }
+        $booking->update([
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+        return response()->json('Event updated');
+    }
+    public function destroy($id)
+    {
+        $booking = Booking::find($id);
+        if (!$booking) {
+            return response()->json([
+                'error' => 'Unable to locate the event'
+            ], 404);
+        }
+        $booking->delete();
+        return $id;
+    }
+    public function create()
+    {
+        return view('meetings.create', [
+            'mechanics' => Mechanic::all(),
+        ]);
     }
 }

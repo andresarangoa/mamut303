@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('status');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->unsignedBigInteger('insurer_id');
+            $table->foreign('insurer_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }
