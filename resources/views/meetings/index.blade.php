@@ -35,7 +35,10 @@
                 <button id="closeModal" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Close</button>
             </div>
         </div>
+       
     </div>
+
+    <x-add-date-modal :vehicles="$vehicles" />
     <div id="calendar">
 
     </div>

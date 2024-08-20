@@ -12,24 +12,28 @@ window.$ = jQuery;
 
 // FullCalendar initialization and configuration
 window.addEventListener('load', () => {
+    const addDateModal = new Modal(document.getElementById('add-date-modal'))
     let calendarEl = document.getElementById('calendar'); // Use plain DOM methods
     let calendar = new Calendar(calendarEl, {
-        plugins: [interactionPlugin,dayGridPlugin, timeGridPlugin, listPlugin],
+        plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
         initialView: 'dayGridMonth',
         selectable: true,
-        editable:true,
+        editable: true,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,listWeek'
+            right: 'dayGridMonth,listWeek,timeGridWeek, prevYear,nextYear'
         },
-        dateClick: function(info) {
-            $('#tailwindModal').removeClass('hidden'); // Show Tailwind modal
-            
-          }
+        dateClick: function (info) {
+            addDateModal.show();
+
+            // Optionally, set the date in the input fields
+            $('#start_date').val(info.dateStr);
+            $('#end_date').val(info.dateStr);
+        }
     });
 
-    $(document).on('click', '#closeModal', function() {
+    $(document).on('click', '#closeModal', function () {
         $('#tailwindModal').addClass('hidden'); // Hide Tailwind modal
     });
     calendar.render();
