@@ -45,13 +45,35 @@ class MeetingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string'
+            'start_date' => 'required',
+            'vehicle_id' => 'required', // Make sure vehicle_id is also validated
+            'status' => 'required', // Ensure status is included in the validation
         ]);
+        // dd($request);
+        $vehicle = Vehicle::where('id', $request->vehicle_id)
+            ->select('id', 'license_plate')
+            ->firstOrFail();
+
+        $title = $request->status . ' - ' . $vehicle->license_plate;
+        $startDate = $request->start_date; // Assuming format 'Y-m-d'
+        $startTime = $request->start_time; // Assuming format 'H:i'
+
+        $startDateTime = $startDate . ' ' . $startTime;
+
+        $startDateTimeObj = new \DateTime($startDateTime);
+         // Clone to preserve the original start DateTime
+        // Add one hour to the start date and time for the end date
+        $endDateTimeObj = clone $startDateTimeObj; // Clone to preserve the original start DateTime
+        $endDateTimeObj->modify('+1 hour'); // Add one h
+        
+        $endDateTime = $endDateTimeObj->format('Y-m-d H:i:s');
 
         $booking = Booking::create([
-            'title' => $request->title,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'title' => $title,
+            'vehicle_id' => $request->vehicle_id,
+            'start_date' => $startDateTime,
+            'end_date' => $endDateTime,
+            'status' => $request->status,
         ]);
 
         $color = null;
@@ -60,14 +82,7 @@ class MeetingController extends Controller
             $color = '#924ACE';
         }
 
-        return response()->json([
-            'id' => $booking->id,
-            'start' => $booking->start_date,
-            'end' => $booking->end_date,
-            'title' => $booking->title,
-            'color' => $color ? $color : '',
-
-        ]);
+        return redirect('/meetings')->with('success', __('messages.booking_created_successfully'));
     }
     public function update(Request $request, $id)
     {

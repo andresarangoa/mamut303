@@ -3,14 +3,14 @@
 @section('content')
     <div class="w-4/5 md:w-1/2 lg:w-2/5 bg-white rounded-lg shadow mx-auto my-4 flex flex-col align-middle justify-center p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 mb-5">
-            Create an account
+            {{__('messages.create_account')}}
         </h1>
         <form method="POST" action="/register" class="w-full flex-1">
             @csrf
             <div class="flex gap-5 mb-5">
                 <div class="flex-1">
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">
-                        First Name
+                        {{__('messages.first_name')}}
                     </label>
                     <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
                         placeholder="First Name"
@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex-1">
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">
-                        Last Name
+                        {{__('messages.last_name')}}
                     </label>
                     <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
                         placeholder="Last Name"
@@ -37,7 +37,7 @@
             </div>
             <div class="mb-5">
                 <label for="address" class="block mb-2 text-sm font-medium text-gray-900">
-                    Address
+                    {{__('messages.address')}}
                 </label>
                 <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Adress"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -49,7 +49,7 @@
             </div>
             <div class="mb-5">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">
-                    Email
+                    {{__('messages.email')}}
                 </label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}"
                     placeholder="example@example.com"
@@ -63,11 +63,11 @@
             <div class="flex gap-5">
                 <div class="mb-5 flex-1">
                     <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900">
-                        Phone Number
+                        {{__('messages.phone_number')}}
                     </label>
                     <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
                         placeholder="Phone Number" 
-                        regex="/^(?:\+212|0)([5-7]\d{8})$/"
+                        regex="/^\+?[1-9]\d{1,10}$/"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                     @error('phone_number')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -77,10 +77,10 @@
                 </div>
                 <div class="mb-5 flex-1">
                     <label for="cin" class="block mb-2 text-sm font-medium text-gray-900">
-                        CIN
+                        {{__('messages.DNI')}}
                     </label>
                     <input type="text" id="cin" name="cin" value="{{ old('cin') }}" placeholder="CIN"
-                        regex="/^[A-Za-z]\d{6}$/"
+                        regex="/^\d{6,}$/"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                     @error('cin')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

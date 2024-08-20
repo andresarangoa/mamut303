@@ -23,8 +23,8 @@ class UserController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'email' => ['required', 'email:rfc,dns', Rule::unique('users', 'email')],
-            'phone_number' => ['required', 'regex:/^(?:\+212|0)([5-7]\d{8})$/', Rule::unique('clients', 'phone_number')],
-            'cin' => ['required', 'regex:/^[A-Za-z]\d{6}$/', Rule::unique('clients', 'cin')],
+            'phone_number' => ['required', 'regex:/^\+?[1-9]\d{1,14}$/', Rule::unique('clients', 'phone_number')],
+            'cin' => ['required', 'regex:/^\d{6,}$/', Rule::unique('clients', 'cin')],
             'password' => ['required', 'confirmed', 'min:8']
         ]);
 

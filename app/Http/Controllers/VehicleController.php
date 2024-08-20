@@ -190,4 +190,6 @@ class VehicleController extends Controller
         Excel::import(new VehiclesImport, request()->file('file'));
         return back()->with('success', 'File imported successfully!');
     }
+
+    
 }

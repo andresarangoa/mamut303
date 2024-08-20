@@ -38,6 +38,11 @@ return [
     'insurer' => 'Insurer',
     'insurer_name' => 'Insurer Name', 
     'insurer_nit' => 'Insurer Nit',
+    'date' => 'date',
+    'date_hour' => 'Hour',
+    'create_account' => 'Create Account',
+    'schedule_date_valoration' => 'Schedule New Date',
+    'booking_created_successfully' => 'Booking created successfully!',
     'status_list' => [
         'received' => 'Received',
         'valuated' => 'Valuated',

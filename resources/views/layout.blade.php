@@ -125,11 +125,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/mechanics"
+                        <a href="/insurers"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
-                                class="fa-solid fa-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.mechanics') }}</span>
+                                class="fa-solid fa-shield-alt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.insurers') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/meetings"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i
+                                class="fa-solid fa-calendar-check text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.meetings') }}</span>
                         </a>
                     </li>
                     <li>
@@ -141,14 +149,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/insurers"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i
-                                class="fa-solid fa-shield-alt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.insurers') }}</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/invoices"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
@@ -157,13 +157,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/meetings"
+                        <a href="/mechanics"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
-                                class="fa-solid fa-calendar-check text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.meetings') }}</span>
+                                class="fa-solid fa-wrench text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{ __('messages.mechanics') }}</span>
                         </a>
                     </li>
+                   
                     <li>
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"

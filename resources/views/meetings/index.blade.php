@@ -44,4 +44,7 @@
     </div>
     <!-- Calendar View -->
     <!-- Modal -->
+    <script>
+        const bookings = @json($events);
+    </script>
 @endsection

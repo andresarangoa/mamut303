@@ -99,7 +99,7 @@ class ClientController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'email' => ['required', 'email'],
-            'phone_number' => ['required', 'regex:/^\+?[1-9]\d{1,14}$/'],
+            'phone_number' => ['required', 'regex:/^\+?[1-9]\d{1,10}$/'],
             'cin' => ['required', 'regex:/^\d{6,}$/'],
             'picture' => 'nullable|image'
         ]);
