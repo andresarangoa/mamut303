@@ -7,6 +7,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import esLocale from '@fullcalendar/core/locales/es';
 
 window.$ = jQuery;
 
@@ -26,6 +27,7 @@ window.addEventListener('load', () => {
         selectable: true,
         editable: true,
         events: bookings,
+        locale: esLocale,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',

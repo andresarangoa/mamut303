@@ -10,7 +10,7 @@
 @section('content')
     <div class="flex justify-between items-center my-5">
         <h3 class="text-3xl font-bold text-gray-900 dark:text-white">
-            Invoices
+            {{ __('messages.invoices') }}
         </h3>
         <div class="w-1/2 flex items-center gap-2">
             <x-search-input route="invoices" />
@@ -49,7 +49,10 @@
                                 {{ $item->total }} DH
                             </td>
                             <td class="px-6 py-4">
-                                <x-status :status="$item->status" />
+                                @php
+                                    $color = config('status_colors.' . $item->status, config('status_colors.default'));
+                                @endphp
+                                <x-status :status="$item->status" :color="$color" />
                             </td>
                             <td class="flex justify-center items-center px-6 py-4">
                                 <button type="button" onclick="event.stopPropagation();"
@@ -129,7 +132,7 @@
                 {{ $invoices->links() }}
             </div>
         @else
-            <div class="text-center">No Data Found</div>
+            <div class="text-center">{{ __('messages.no_data_found') }}</div>
         @endif
     </div>
 @endsection

@@ -50,7 +50,11 @@
                                                 @if ($col != 'status')
                                                     {{ $repair[$col] }}
                                                 @else
-                                                    <x-status :status="$repair[$col]" />
+                                                    @php
+                                                        $color =
+                                                            $statusColors[$repair[$col]] ?? $statusColors['default']; // Default color if status not found
+                                                    @endphp
+                                                    <x-status :status="$repair[$col]" :color="$color" />
                                                 @endif
                                             </td>
                                         @endif

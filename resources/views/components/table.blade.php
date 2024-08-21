@@ -9,17 +9,17 @@
         @if (auth()->user()->role == 'admin')
             <button type="button" onclick="window.location='{{ $route . '-export' }}'"
                 class="px-5 py-3 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-upload text-purple-700"></i> Export
+                <i class="fa-solid fa-upload text-purple-700"></i>  {{__('messages.export')}}
             </button>
             <button type="button" data-modal-target="import-modal" data-modal-show="import-modal"
                 class="px-5 py-3 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-download text-purple-700"></i> Import
+                <i class="fa-solid fa-download text-purple-700"></i> {{__('messages.import')}}
             </button>
         @endif
         @if (auth()->user()->role != 'mechanic')
             <button type="button" onclick="window.location='{{ $route . '/create' }}'"
                 class="px-5 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i> {{__('messages.create')}}
             </button>
         @endif
     </div>
@@ -39,7 +39,7 @@
                     @endforeach
                     @if (auth()->user()->role != 'mechanic')
                         <th scope="col" class="px-6 py-3 text-center">
-                            Actions
+                            {{__('messages.actions')}}
                         </th>
                     @endif
                 </tr>
@@ -63,7 +63,7 @@
                         <div
                             class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Import File
+                                {{__('messages.import_file')}}
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -78,7 +78,7 @@
                                 <div class="mb-5">
                                     <label for="file"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Choose file
+                                        {{__('messages.choose_file')}}
                                     </label>
                                     <input name="file"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -107,7 +107,7 @@
             </div>
         @endif
     @else
-        <div class="text-center">No Data Found</div>
+        <div class="text-center"> {{__('messages.no_data_found')}}</div>
     @endif
 
 </div>

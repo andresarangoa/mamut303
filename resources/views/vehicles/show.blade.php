@@ -6,6 +6,20 @@
         $columns = array_keys($repairs->first()->toArray());
     }
     $showButton = auth()->user()->role != 'mechanic';
+
+    $statusColors = [
+        'Fixed' => 'text-green-800',
+        'Completed' => 'text-green-800',
+        'Done' => 'text-green-800',
+        'Paid' => 'text-green-800',
+        'In Progress' => 'text-blue-800',
+        'Planned' => 'text-blue-800',
+        'Waiting for Parts' => 'text-yellow-800',
+        'Canceled' => 'text-yellow-800',
+        'Not Paid' => 'text-purple-800',
+        'default' => 'text-gray-800',
+    ];
+
 @endphp
 
 @section('content')
@@ -47,7 +61,10 @@
                                                 @if ($col != 'status')
                                                     {{ $repair[$col] }}
                                                 @else
-                                                    <x-status :status="$repair[$col]" />
+                                                    @php
+                                                      $color = $statusColors[$repair[$col]] ?? $statusColors['default']; // Default color if status not found
+                                                    @endphp
+                                                    <x-status :status="$repair[$col]" :color="$color" />
                                                 @endif
                                             </td>
                                         @endif
@@ -113,7 +130,7 @@
                     <div class="p-4 md:p-5 space-y-4">
                         <div class="mb-5">
                             <label for="file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Choose file
+                                {{__('messages.choose_file')}}
                             </label>
                             <input name="picture"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"

@@ -10,5 +10,5 @@
 @endphp
 
 @section('content')
-    <x-table route="mechanics" title="Mechanics" :headers="$headers" :columns="$columns" :list="$mechanics" />
+    <x-table route="mechanics" title="{{ __('messages.mechanics') }}" :headers="$headers" :columns="$columns" :list="$mechanics" />
 @endsection

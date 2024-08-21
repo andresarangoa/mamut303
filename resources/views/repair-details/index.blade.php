@@ -13,13 +13,13 @@
 @section('content')
     <div class="flex justify-between items-center my-5">
         <h3 class="text-3xl font-bold text-gray-900 dark:text-white">
-            Repairs
+            {{__('messages.repairs')}}
         </h3>
         <div class="w-1/2 flex items-center gap-2">
             <x-search-input route="repairs" />
             <button type="button" data-modal-target="create-modal" data-modal-show="create-modal"
                 class="px-5 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i>  {{__('messages.create')}}
             </button>
         </div>
     </div>
@@ -137,7 +137,7 @@
                 {{ $repairs->links() }}
             </div>
         @else
-            <div class="text-center">No Data Found</div>
+            <div class="text-center">{{__('messages.no_data_found')}}</div>
         @endif
         <!-- Create Modal -->
         <div id='create-modal' tabindex="-1" aria-hidden="true" data-modal-backdrop="static"

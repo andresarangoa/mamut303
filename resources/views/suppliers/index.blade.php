@@ -28,7 +28,7 @@
             @endif
             <button type="button" data-modal-target="create-modal" data-modal-show="create-modal"
                 class="px-5 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i>  {{__('messages.create')}}
             </button>
         </div>
     </div>
@@ -102,7 +102,7 @@
                                     <div class="mb-5">
                                         <label for="file"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Choose file
+                                            {{__('messages.choose_file')}}
                                         </label>
                                         <input name="file"
                                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -131,7 +131,7 @@
                 </div>
             @endif
         @else
-            <div class="text-center">No Data Found</div>
+            <div class="text-center">{{__('messages.no_data_found')}}</div>
         @endif
     </div>
 
