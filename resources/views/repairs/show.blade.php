@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['Name', 'Reference', 'Quantity', 'Price', 'Total'];
+    $headers = [__('messages.spare_name'), __('messages.reference'), __('messages.quantity'), __('messages.price'), 'Total'];
     if (!$spareparts->isEmpty()) {
         $columns = array_keys($spareparts->first()->toArray());
     }
@@ -22,7 +22,7 @@
         @if (auth()->user()->role != 'client')
             <button type="button" data-modal-target="edit-modal" data-modal-show="edit-modal"
                 class="px-6 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                <i class="fa-solid fa-pen"></i> Edit
+                <i class="fa-solid fa-pen"></i> {{ __('messages.edit') }}
             </button>
         @endif
     </div>
@@ -36,21 +36,20 @@
                         <div class="px-4 py-2 bg-white rounded-t-lg">
                             <label for="notes" class="sr-only">Your Note</label>
                             <textarea id="notes" rows="4" name="mechanic_notes"
-                                class="w-full px-0 text-sm text-gray-900 bg-white border-0 focus:ring-0"
-                                placeholder="Keep a note..." required>{{ $repair->mechanic_notes ?? 'Keep a note..' }}
+                                class="w-full px-0 text-sm text-gray-900 bg-white border-0 focus:ring-0" placeholder="Keep a note..." required>{{ $repair->mechanic_notes ?? 'Keep a note..' }}
                             </textarea>
                         </div>
                         <div class="flex items-center justify-end px-3 py-2 bg-white">
                             <button type="submit"
                                 class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-purple-700 rounded-lg focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-900 hover:bg-purple-800">
-                                Save
+                                {{ __('messages.save') }}
                             </button>
                         </div>
                     </div>
                 </form>
             </x-card>
         @else
-            <x-card title="Mechanic">
+            <x-card title="{{ __('messages.mechanic') }}">
                 <x-info-card :user="$user" :person="$mechanic" />
                 <hr class="mb-4">
                 <p class="text-sm">
@@ -61,12 +60,12 @@
                 </p>
             </x-card>
         @endif
-        <x-card title="Summary" :status="$repair->status">
+        <x-card title="{{ __('messages.summary') }}" :status="$repair->status">
             <div class="px-4">
                 <div class="flex items-baseline justify-between gap-3 mb-2">
-                    <div class="text-sm">Repair Price</div>
+                    <div class="text-sm">{{__('messages.repair_price')}}</div>
                     <div class="flex-1 border-b border-gray-400 border-dashed"></div>
-                    <div class="font-bold">{{ $repair->price }} DH</div>
+                    <div class="font-bold">{{ $repair->price }} COP</div>
                 </div>
                 @if (!$spareparts->isEmpty())
                     @foreach ($spareparts as $part)
@@ -76,14 +75,14 @@
                         <div class="flex items-baseline justify-between gap-3 mb-2">
                             <div class="text-sm">{{ $part->name }}</div>
                             <div class="flex-1 border-b border-gray-400 border-dashed"></div>
-                            <div class="font-bold">{{ $part->quantity * $part->price }} DH</div>
+                            <div class="font-bold">{{ $part->quantity * $part->price }} COP</div>
                         </div>
                     @endforeach
                 @endif
                 <div class="flex items-baseline justify-between gap-3 mb-2 text-purple-700">
                     <div class="font-semibold">Total</div>
                     <div class="flex-1 border-b border-purple-700 border-dashed"></div>
-                    <div class="font-bold">{{ $total }} DH</div>
+                    <div class="font-bold">{{ $total }} COP</div>
                 </div>
             </div>
         </x-card>
@@ -91,7 +90,7 @@
             class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 col-span-2">
             <div class="flex justify-between items-center">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-                    Spare Parts
+                   {{__('messages.spare_parts')}}
                 </h3>
                 @if (auth()->user()->role != 'client')
                     <button type="button" data-modal-target="add-sparepart" data-modal-show="add-sparepart"

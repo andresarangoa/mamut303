@@ -51,8 +51,7 @@
                                                     {{ $repair[$col] }}
                                                 @else
                                                     @php
-                                                        $color =
-                                                            $statusColors[$repair[$col]] ?? $statusColors['default']; // Default color if status not found
+                                                         $color = config('status_colors.' . $repair[$col], config('status_colors.default'));
                                                     @endphp
                                                     <x-status :status="$repair[$col]" :color="$color" />
                                                 @endif

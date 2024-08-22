@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['First Name', 'Last Name', 'CIN', 'Phone Number'];
+    $headers = [ __('messages.first_name'), __('messages.last_name'), __('messages.DNI'), __('messages.phone_number')];
     if ($mechanics->isNotEmpty()) {
         $columns = array_keys($mechanics->first()->toArray());
     } else {
