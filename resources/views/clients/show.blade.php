@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['#', 'Make', 'Model', 'License Plate', 'Status'];
+    $headers = ['#', __('messages.brand'), __('messages.model'), __('messages.license_plate'), __('messages.status')];
     if (!$vehicles->isEmpty()) {
         $columns = array_keys($vehicles->first()->toArray());
     }
@@ -13,7 +13,7 @@
         <x-card title="Info">
             <x-info-card :user="$user" :person="$client" />
         </x-card>
-        <x-card title="Invoices">
+        <x-card title="{{__('messages.invoices')}}">
             <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
                 @foreach ($invoices as $item)
                     <li class="flex items-center justify-between">
@@ -30,7 +30,7 @@
                 @endforeach
             </ul>
         </x-card>
-        <x-card title="Vehicles" class="col-span-2">
+        <x-card title="{{__('messages.vehicles')}}" class="col-span-2">
             <div class="relative overflow-x-auto sm:rounded-lg">
                 @if (!$vehicles->isEmpty())
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

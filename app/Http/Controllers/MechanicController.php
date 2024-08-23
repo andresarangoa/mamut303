@@ -32,7 +32,7 @@ class MechanicController extends Controller
             ->join('vehicles', 'vehicles.id', '=', 'vehicle_id')
             ->join('repairs_details', 'repairs.repair_details_id', '=', 'repairs_details.id')
             ->where('mechanic_id', $mechanic->id)
-            ->select('repairs.id', 'description', 'mechanic_notes', 'repairs.status')
+            ->select('repairs.id', 'description', 'brand', 'mechanic_notes', 'repairs.status')
             ->get();
         return view('mechanics.show', [
             'mechanic' => $mechanic,
