@@ -142,5 +142,5 @@
         @endif
     </div>
 
-    <x-create-sparepart-modal :suppliers="$suppliers" />
+    <x-create-sparepart-modal :suppliers="$suppliers" :today="$today"/>
 @endsection

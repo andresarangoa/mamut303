@@ -17,7 +17,7 @@ class SupplierController extends Controller
         return view('suppliers.index', [
             'suppliers' => Supplier::latest()
                 ->select(['id', 'name', 'email', 'phone_number', 'address'])
-                ->simplePaginate(5)
+                ->simplePaginate(5),
         ]);
     }
 

@@ -1,7 +1,13 @@
 @extends('layout')
 
 @php
-    $headers = [__('messages.spare_name'), __('messages.reference'), __('messages.quantity'), __('messages.price'), 'Total'];
+    $headers = [
+        __('messages.spare_name'),
+        __('messages.reference'),
+        __('messages.quantity'),
+        __('messages.price'),
+        'Total',
+    ];
     if (!$spareparts->isEmpty()) {
         $columns = array_keys($spareparts->first()->toArray());
     }
@@ -54,7 +60,7 @@
                 <hr class="mb-4">
                 <p class="text-sm">
                     <span class="font-semibold text-sky-500">
-                        <i class="fa-solid fa-pencil"></i> Notes :
+                        <i class="fa-solid fa-pencil"></i> {{ __('messages.notes') }}
                     </span>
                     {{ $repair->mechanic_notes }}
                 </p>
@@ -63,7 +69,7 @@
         <x-card title="{{ __('messages.summary') }}" :status="$repair->status">
             <div class="px-4">
                 <div class="flex items-baseline justify-between gap-3 mb-2">
-                    <div class="text-sm">{{__('messages.repair_price')}}</div>
+                    <div class="text-sm">{{ __('messages.repair_price') }}</div>
                     <div class="flex-1 border-b border-gray-400 border-dashed"></div>
                     <div class="font-bold">{{ $repair->price }} COP</div>
                 </div>
@@ -90,7 +96,7 @@
             class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 col-span-2">
             <div class="flex justify-between items-center">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-                   {{__('messages.spare_parts')}}
+                    {{ __('messages.spare_parts') }}
                 </h3>
                 @if (auth()->user()->role != 'client')
                     <button type="button" data-modal-target="add-sparepart" data-modal-show="add-sparepart"
@@ -196,7 +202,7 @@
                     <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Add Spare Part
+                            {{ __('messages.add_spare_part') }}
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -212,11 +218,11 @@
                             <div class="mb-5">
                                 <label for="sparepart_id"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Spare Part
+                                    {{ __('messages.spare_part') }}
                                 </label>
                                 <select id="sparepart_id" name="sparepart_id"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-                                    <option value="">Select Spare Part</option>
+                                    <option value=""> {{ __('messages.select_spare_part') }}</option>
                                     @foreach ($spareparts_list as $part)
                                         <option value="{{ $part->id }}" @selected($part->id == old('sparepart_id'))>
                                             {{ $part->name }}
@@ -232,10 +238,10 @@
                             <div class="mb-5">
                                 <label for="quantity"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Quantity
+                                    {{ __('messages.quantity') }}
                                 </label>
                                 <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}"
-                                    placeholder="Quantity"
+                                    placeholder="{{ __('messages.quantity') }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
                                 @error('quantity')
                                     <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -249,11 +255,11 @@
                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button data-modal-hide="add-sparepart" type="submit"
                                 class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-                                Add
+                                {{ __('messages.add') }}
                             </button>
                             <button data-modal-hide="add-sparepart" type="button"
                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-purple-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                Cancel
+                                {{ __('messages.cancel') }}
                             </button>
                         </div>
                     </form>

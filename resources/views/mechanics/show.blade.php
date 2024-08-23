@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['Repair', 'Vehicle', 'Notes', 'Status'];
+    $headers = [__('messages.repairs'), __('messages.vehicles'), __('messages.notes'), __('messages.status')];
     if (!$repairs->isEmpty()) {
         $columns = array_keys($repairs->first()->toArray());
     }
