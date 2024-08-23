@@ -7,7 +7,10 @@
             {{ $title }}
         </h3>
         @if (isset($status))
-            <x-status :status="$status" />
+            @php
+                $color = config('status_colors.' . $status, config('status_colors.default'));
+            @endphp
+            <x-status :status="$status" :color="$color" />
         @endif
     </div>
     <hr class="my-4">

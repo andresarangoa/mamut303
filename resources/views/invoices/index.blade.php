@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['#', 'Client', 'Total', 'Status'];
+    $headers = ['#', __('messages.client'), 'Total', __('messages.status')];
     if (!$invoices->isEmpty()) {
         $columns = array_keys($invoices->first()->toArray());
     }
@@ -10,13 +10,13 @@
 @section('content')
     <div class="flex justify-between items-center my-5">
         <h3 class="text-3xl font-bold text-gray-900 dark:text-white">
-            Invoices
+            {{ __('messages.invoices') }}
         </h3>
         <div class="w-1/2 flex items-center gap-2">
             <x-search-input route="invoices" />
             <button type="button"
                 class="px-5 py-3 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-filter text-purple-700"></i> Filter
+                <i class="fa-solid fa-filter text-purple-700"></i> {{ __('messages.filter') }}
             </button>
         </div>
     </div>
@@ -31,7 +31,7 @@
                             </th>
                         @endforeach
                         <th scope="col" class="px-6 py-3 text-center">
-                            Actions
+                            {{ __('messages.actions') }}
                         </th>
                     </tr>
                 </thead>
@@ -49,7 +49,10 @@
                                 {{ $item->total }} DH
                             </td>
                             <td class="px-6 py-4">
-                                <x-status :status="$item->status" />
+                                @php
+                                    $color = config('status_colors.' . $item->status, config('status_colors.default'));
+                                @endphp
+                                <x-status :status="$item->status" :color="$color" />
                             </td>
                             <td class="flex justify-center items-center px-6 py-4">
                                 <button type="button" onclick="event.stopPropagation();"
@@ -129,7 +132,7 @@
                 {{ $invoices->links() }}
             </div>
         @else
-            <div class="text-center">No Data Found</div>
+            <div class="text-center">{{ __('messages.no_data_found') }}</div>
         @endif
     </div>
 @endsection

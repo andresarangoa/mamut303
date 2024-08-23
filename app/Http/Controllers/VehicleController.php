@@ -70,7 +70,7 @@ class VehicleController extends Controller
             ->select([
                 'repairs.id', 
                 'description', 
-                'price', 
+                'repairs.price', 
                 'status', 
             ])
             ->get();

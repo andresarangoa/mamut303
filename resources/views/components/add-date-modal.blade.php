@@ -116,9 +116,9 @@
                         </label>
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-                            <option value="Pending" @selected(old('status') == 'Pending')>Pending</option>
-                            <option value="In Progress" @selected(old('status') == 'In Progress')>In Progress</option>
-                            <option value="Completed" @selected(old('status') == 'Completed')>Completed</option>
+                            <option value="" @selected(old('status') == 'Pending')>{{__('messages.repair_status_list.pending')}}</option>
+                            <option value="In Progress" @selected(old('status') == 'In Progress')>{{__('messages.repair_status_list.in_progress')}}</option>
+                            <option value="Completed" @selected(old('status') == 'Completed')>{{__('messages.repair_status_list.completed')}}</option>
                         </select>
                         @error('status')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

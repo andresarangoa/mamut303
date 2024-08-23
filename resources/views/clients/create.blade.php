@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <x-show-header title="New Client" :showButton="false" />
+    <x-show-header title="{{ __('messages.new_client') }}" :showButton="false" />
     <div class="flex">
         <form method="POST" action="/clients" enctype="multipart/form-data" class="max-w-md p-5 flex-1">
             @csrf
@@ -10,8 +10,7 @@
                     src="https://flowbite.com/docs/images/examples/image-2@2x.jpg" alt="Profile">
             </div>
             <div class="mb-5">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Profile
-                    Picture</label>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">{{__('messages.profile_picture')}}</label>
                 <input type="file" id="user_avatar" name="picture"
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help">

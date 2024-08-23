@@ -13,7 +13,7 @@
     @if (!isset($showButton) || $showButton == true)
         <button type="button" onclick="window.location='{{ $route }}'"
             class="px-6 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-            <i class="fa-solid fa-pen"></i> Edit
+            <i class="fa-solid fa-pen"></i> {{__('messages.edit')}}
         </button>
     @endif
 </div>

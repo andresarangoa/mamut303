@@ -1,7 +1,7 @@
 @extends('layout')
 
 @php
-    $headers = ['#', 'Description', 'Price'];
+    $headers = ['#', __('messages.description'), __('messages.price')];
 
     if ($repairs->isNotEmpty()) {
         $columns = array_keys($repairs->first()->toArray());
@@ -13,13 +13,13 @@
 @section('content')
     <div class="flex justify-between items-center my-5">
         <h3 class="text-3xl font-bold text-gray-900 dark:text-white">
-            Repairs
+            {{ __('messages.repairs') }}
         </h3>
         <div class="w-1/2 flex items-center gap-2">
             <x-search-input route="repairs" />
             <button type="button" data-modal-target="create-modal" data-modal-show="create-modal"
                 class="px-5 py-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                <i class="fa-solid fa-plus"></i> Create
+                <i class="fa-solid fa-plus"></i> {{ __('messages.create') }}
             </button>
         </div>
     </div>
@@ -34,7 +34,7 @@
                             </th>
                         @endforeach
                         <th scope="col" class="px-6 py-3 text-center">
-                            Actions
+                            {{ __('messages.actions') }}
                         </th>
                     </tr>
                 </thead>
@@ -70,7 +70,7 @@
                                     <div
                                         class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Edit Repair
+                                            {{__('messages.edit_repair')}}
                                         </h3>
                                         <button type="button"
                                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -86,7 +86,7 @@
                                             <div class="mb-5">
                                                 <label for="description"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Description
+                                                    {{__('messages.description')}}
                                                 </label>
                                                 <input type="text" id="description" name="description"
                                                     value="{{ $item->description }}"
@@ -101,7 +101,7 @@
                                             <div class="mb-5">
                                                 <label for="price"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Price
+                                                    {{__('messages.price')}}
                                                 </label>
                                                 <input type="number" id="price" name="price"
                                                     value="{{ $item->price }}"
@@ -137,7 +137,7 @@
                 {{ $repairs->links() }}
             </div>
         @else
-            <div class="text-center">No Data Found</div>
+            <div class="text-center">{{ __('messages.no_data_found') }}</div>
         @endif
         <!-- Create Modal -->
         <div id='create-modal' tabindex="-1" aria-hidden="true" data-modal-backdrop="static"
@@ -146,7 +146,7 @@
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Add Repair
+                            {{ __('messages.add_repair') }}
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -161,7 +161,7 @@
                             <div class="mb-5">
                                 <label for="description"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Description
+                                    {{ __('messages.description') }}
                                 </label>
                                 <input type="text" id="description" name="description"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -173,7 +173,7 @@
                             </div>
                             <div class="mb-5">
                                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Price
+                                    {{ __('messages.price') }}
                                 </label>
                                 <input type="number" id="price" name="price"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
@@ -187,11 +187,11 @@
                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button data-modal-hide='create-modal' type="submit"
                                 class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-                                Save
+                                {{ __('messages.save') }}
                             </button>
                             <button data-modal-hide='create-modal' type="button"
                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-purple-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                Cancel
+                                {{ __('messages.cancel') }}
                             </button>
                         </div>
                     </form>

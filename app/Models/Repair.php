@@ -16,6 +16,8 @@ class Repair extends Model
         'invoice_id',
         'status',
         'start_date',
+        'admited_hours',
+        'price',
         'end_date',
         'mechanic_notes',
     ];

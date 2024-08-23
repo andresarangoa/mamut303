@@ -19,7 +19,8 @@ class SparePartController extends Controller
             'spareparts' => Sparepart::latest()
                 ->select(['id', 'name', 'reference', 'stock', 'price', 'picture', 'supplier_id'])
                 ->simplePaginate(5),
-            'suppliers' => Supplier::all(['id', 'name'])
+            'suppliers' => Supplier::all(['id', 'name']),
+            'today' => now()->format('m-d-Y'), // Add today's date in Y-m-d format
         ]);
     }
 
