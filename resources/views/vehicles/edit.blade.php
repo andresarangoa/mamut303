@@ -49,6 +49,18 @@
                         </p>
                     @enderror
                 </div>
+                <div class="flex-1">
+                    <label for="year" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ __('messages.year') }}
+                    </label>
+                    <input type="text" id="year" name="year" value="{{ $vehicle->year  }}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" />
+                    @error('year')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
             </div>
             <div class="flex gap-5 mb-5">
                 <div class="flex-1">
@@ -73,34 +85,37 @@
                         </p>
                     @enderror
                 </div>
-                <div class="flex-1">
-                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        {{ __('messages.status') }}
-                    </label>
-                    <select id="status" name="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-                        <option value=""></option>
-                        <option value="received" @selected($vehicle->status == 'received')>{{ __('messages.status_list.received') }}
-                        </option>
-                        <option value="valuated" @selected($vehicle->status == 'valuated')>{{ __('messages.status_list.valuated') }}
-                        </option>
-                        <option value="in_workshop" @selected($vehicle->status == 'in_workshop')>
-                            {{ __('messages.status_list.in_workshop') }}
-                        </option>
-                        <option value="total_loss" @selected($vehicle->status == 'total_loss')>
-                            {{ __('messages.status_list.total_loss') }}
-                        </option>
-                        <option value="left_without_nomination" @selected($vehicle->status == 'left_without_nomination')>
-                            {{ __('messages.status_list.left_without_nomination') }}</option>
-                        <option value="left_and_in_nomination" @selected($vehicle->status == 'left_and_in_nomination')>
-                            {{ __('messages.status_list.left_and_in_nomination') }}</option>
-                    </select>
-                    @error('status')
-                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+                @if (auth()->user()->role == 'admin')
+                    <div class="flex-1">
+                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ __('messages.status') }}
+                        </label>
+                        <select id="status" name="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                            <option value=""></option>
+                            <option value="received" @selected($vehicle->status == 'received')>{{ __('messages.status_list.received') }}
+                            </option>
+                            <option value="valuated" @selected($vehicle->status == 'valuated')>
+                                {{ __('messages.status_list.valuated') }}
+                            </option>
+                            <option value="in_workshop" @selected($vehicle->status == 'in_workshop')>
+                                {{ __('messages.status_list.in_workshop') }}
+                            </option>
+                            <option value="total_loss" @selected($vehicle->status == 'total_loss')>
+                                {{ __('messages.status_list.total_loss') }}
+                            </option>
+                            <option value="left_without_nomination" @selected($vehicle->status == 'left_without_nomination')>
+                                {{ __('messages.status_list.left_without_nomination') }}</option>
+                            <option value="left_and_in_nomination" @selected($vehicle->status == 'left_and_in_nomination')>
+                                {{ __('messages.status_list.left_and_in_nomination') }}</option>
+                        </select>
+                        @error('status')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                @endif
             </div>
             <div class="flex gap-5 mb-5">
                 <div class="flex-1">
@@ -130,10 +145,10 @@
                         @endforeach
                     </select>
                     @error('insurer_id')
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
-                        {{ $message }}
-                    </p>
-                @enderror
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
             </div>
             <button type="submit"

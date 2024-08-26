@@ -24,6 +24,7 @@ class VehicleController extends Controller
                 ->join('insurers', 'vehicles.insurer_id', '=', 'insurers.id') // Join with the insurers table
                 ->select([
                     'vehicles.id', 
+                    'vehicles.status', 
                     'brand', 
                     'model', 
                     'license_plate', 
