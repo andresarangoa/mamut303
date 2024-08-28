@@ -6,7 +6,7 @@ export default defineConfig({
         hmr: {
             host: "0.0.0.0",
         },
-        port: parseInt(process.env.PORT) || 3000, // Default to 3000 if PORT is not set
+        port: process.env.PORT || 3000, // Default to 3000 if PORT is not set
         host: true,
     },
     plugins: [
