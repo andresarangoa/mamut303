@@ -194,7 +194,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-car text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">My Vehicles</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{__('messages.my_vehicles')}}</span>
                         </a>
                     </li>
                     <li>
@@ -202,7 +202,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-receipt text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Invoices</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{__('messages.invoices')}}</span>
                         </a>
                     </li>
                     <li>
@@ -210,7 +210,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-calendar-check text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Meetings</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{__('messages.car_repair_calendar')}}</span>
                         </a>
                     </li>
                     <li>
@@ -218,7 +218,7 @@
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i
                                 class="fa-solid fa-user text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Personal Info</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">{{__('messages.personal_info')}}</span>
                         </a>
                     </li>
                 @endif

@@ -8,7 +8,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Request Repair
+                    {{__('messages.request_repair')}}
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -24,7 +24,7 @@
                     <div class="flex gap-3 mb-5">
                         <div class="flex-1">
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Meeting Date
+                                {{__('messages.request_date')}}
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="flex-1">
                             <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Meeting Time
+                                {{__('messages.request_time')}}
                             </label>
                             <div class="relative">
                                 <div
@@ -59,10 +59,27 @@
                                 </p>
                             @enderror
                         </div>
+                        <div class="mb-5 flex-1">
+                            <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ __('messages.repair_type') }}
+                            </label>
+                            <select id="repair_type" name="repair_type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+                                <option value="Repair" @selected(old('status') == 'Repair')>
+                                    {{ __('messages.repair_type_list.repair') }}</option>
+                                <option value="Car_Checking" @selected(old('status') == 'Car_Checking')>
+                                    {{ __('messages.repair_type_list.car_checking') }}</option>
+                            </select>
+                            @error('repair_type')
+                                <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="mb-5">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Your description
+                            {{__('messages.description')}}
                         </label>
                         <textarea id="description" rows="4" name="description"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
@@ -80,11 +97,11 @@
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button data-modal-hide="request-modal" type="submit"
                         class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-                        Send
+                        {{__('messages.send')}}
                     </button>
                     <button data-modal-hide="request-modal" type="button"
                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-purple-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                        Cancel
+                        {{__('messages.cancel')}}
                     </button>
                 </div>
             </form>
