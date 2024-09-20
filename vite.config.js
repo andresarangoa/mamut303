@@ -4,7 +4,7 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     server: {
         hmr: {
-            host: "0.0.0.0",
+            host: "192.241.140.157",
             port: process.env.PORT || 3000,
         },
         port: process.env.PORT || 3000, // Default to 3000 if PORT is not set
